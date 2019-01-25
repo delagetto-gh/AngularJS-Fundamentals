@@ -1,0 +1,38 @@
+<html ng-app>
+
+<head>
+    <script src="../angular.min.js"></script>
+</head>
+
+<body>
+    <!-- 4) We use ng-controller="controllerName" to tell angular what controller we are using
+                to get and set the model data. Controllername is the name of the controller defined in your JS -->
+    <div ng-controller="CountriesVisitedController">
+        <p>Number of countries visited: {{ countriesVisited.length }}</p>
+        <ul>
+            <li ng-repeat="countryVisited in countriesVisited">
+                {{ countryVisited.name }} @ ({{ countryVisited.datevisited }})
+            </li>
+        </ul>
+    </div>
+    <script>
+        //1) create an mvc - 'controller' which will coordinate getting the 'model' and present itfor the 'view'
+        function CountriesVisitedController($scope) {   /* 2) inject $scope (angular DI object for a context, where    
+                                                             out view and controller have access to it. 
+                                                             very similar to ViewBag! in Asp.NET) */
+
+
+            // 3) this is the same array data, but we now place it in the controller
+            //    and as a property of our Angular $scope bag. (mimicking it retrieving the data from a web service/webapi)
+            //    anything defined in $scope willbecome available as a variable in our 'view' side of angular. 
+            $scope.countriesVisited = [
+                { name: 'Thailand', datevisited: '11/18' }
+                , { name: 'USA-ToShowItsComingFromScope!', datevisited: '07/18' }
+                , { name: 'Japan', datevisited: '10/18' }
+                , { name: 'Brazil', datevisited: '09/18' }
+                , { name: 'Colombia', datevisited: '09/18' }];
+        };
+    </script>
+</body>
+
+</html>

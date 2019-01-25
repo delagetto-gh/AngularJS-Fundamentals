@@ -1,0 +1,28 @@
+<html ng-app="MyAngularApp">
+
+<head>
+
+</head>
+
+<body>
+    <!-- ng-view acts as our placeholder for the partial html page that is to be rendered
+            this is based on our defined routes (ngRouter) in the app's config. 
+
+            When we hit a particular route (as defined in the route config in app.config), there will 
+            be an associated template (arbitrary content) or templateURl (partial html) with that route,
+            and this it will be that template(url) that will be rendered here in ng-view
+            -->
+    <ng-view></ng-view>
+
+
+    <!-- 
+    AGAIN... the order of this ish really matters!
+    1) Always incd angularjs first.
+    2) then include and of the extra angular modules you may be using (i.e angular-route)
+    3) then your app/appconfig etc.. -->
+    <script src="./angular-1.6.5/angular.js"></script>
+    <script src="./angular-1.6.5/angular-route.js"></script>
+    <script src="./App.js"></script>
+</body>
+
+</html>

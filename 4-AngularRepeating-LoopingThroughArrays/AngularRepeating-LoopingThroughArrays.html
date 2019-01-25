@@ -1,0 +1,35 @@
+<html ng-app>
+
+<head>
+    <script src="../angular.min.js"></script>
+</head>
+
+<body>
+    <!-- 1) Create an initialized array variable in JS using ng init -->
+    <div ng-init="countriesVisitedArray = [ { name: 'Thailand', datevisited: '11/18' }
+                                            , { name: 'USA', datevisited: '7-8/18' }
+                                            , { name: 'Japan', datevisited: '10/18' }
+                                            , { name: 'Brazil', datevisited: '9/18' }
+                                            , { name: 'Colombia', datevisited: '9/18' }]">
+
+        <p>Number of countries visited: {{ countriesVisitedArray.length }}</p>
+        <ul>
+            <!-- 2) The ng-repeat="currentIterName in arrayVariable" says...
+                    foreach item in array, i will repeat the element i (ng-repeat) 
+                    is declared on  -->
+
+            <!-- 3) we can NEST ng-repeats, this one, we iterate each key,value pair within  -->
+            <li ng-repeat="countryVisited in countriesVisitedArray">
+                <ul>
+                    <!-- 4) ng-repeat gives us a nice syntax to iterate the KEY,VAL pairs in an object.
+                            as an object is just JSON, its DEFINITELEY key-value structure -->
+                    <li ng-repeat="(key,value) in countryVisited">
+                        <strong> {{ key | uppercase }} </strong> = {{ value }}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

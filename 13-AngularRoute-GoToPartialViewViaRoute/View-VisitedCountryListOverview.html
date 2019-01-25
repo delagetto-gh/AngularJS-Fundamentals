@@ -1,0 +1,38 @@
+<div ng-controller="CountriesVisitedController"> 
+    <!-- 4) We use ng-controller="controllerName" to tell angular what controller we are using
+            to get and set the model data. Controllername is the name of the controller defined in your JS 
+        also note, the scope of this declaration matters... it needs to be on an element 
+        which is the parent or some ancestor of elements/code that will USE the controller + scope properties-->
+    <div>
+        <p>Number of countries visited: {{ countriesVisited.length }}</p>
+        <ul>
+            <li ng-repeat="countryVisited in countriesVisited">
+                {{ countryVisited.name }} @ ({{ countryVisited.datevisited }})
+            </li>
+        </ul>
+    </div>
+
+    <!-- 6) Create a angular style 'form' so we have inputs for making entering a new countryVisited -->
+    <div style="width:25%">
+        <div style="background-color:darkseagreen">
+            <label for="inputCountryName">Country:</label>
+            <input type="text" placeholder="Enter Country here..." ng-model="countryToAdd.name">
+            <!-- 7) we declare our ng-model that the VALUE of the text input will be stored
+                in the countryToAdd(object).name(property of the object) -->
+
+            <!-- remember Angular is smart enough to see that countryToAdd has not been defined
+                    elsewhere, so will new one up for us in the scope so we can use it -->
+        </div>
+        <div>
+            <div style="float:left; background-color: antiquewhite">
+                <label for="inputDateVisited">Date:</label>
+                <input type="text" placeholder="mm/yy" ng-model="countryToAdd.datevisited">
+                <!-- 7) we declare our ng-model that the VALUE of the text input will be stored
+                 in the countryToAdd(object).dateVisited(property of the object) -->
+            </div>
+            <div style="float:right;">
+                <button type="button" ng-click="addVisitedCountry(countryToAdd)">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

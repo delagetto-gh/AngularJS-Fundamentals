@@ -1,0 +1,28 @@
+<html ng-app>
+<!-- ng-app must be inlcuded at html tag to 
+         make/render the page as an angular app/page -->
+
+<head>
+    <script type="text/javascript" src="../angular.min.js"> </script>
+</head>
+
+<body>
+    Everybody wants to say "{{ messageText }}"
+    <!-- use of the ang declared variable -->
+    <p>
+        <input type="text" ng-model="messageText" ng-init="messageText = 'initil text brozki'">
+        <!-- using ng-init="declarations here" allows us to set initil values
+                        for our variables, which we can use as placeholders or defaults -->
+
+        <!-- forexample  ng-init="messageText = 'Enter Age'" -->
+    </p>
+    <!-- You can also bind to complex typs/JS OBJECTS! -->
+                         <!-- FOR EXAMPLE... -->
+    <ul ng-init="someRandomObject = { randyProperty: 'boomshaka' }">
+        <li>{{ someRandomObject.randyProperty }}</li>
+        <li>{{ someRandomObject.randyProperty }}</li>
+    </ul>
+
+</body>
+
+</html>

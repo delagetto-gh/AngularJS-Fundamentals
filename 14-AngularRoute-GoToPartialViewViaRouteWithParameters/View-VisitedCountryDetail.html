@@ -1,0 +1,17 @@
+<div ng-controller="CountryDetailsViewController">
+    <!-- 4) We use ng-controller="controllerName" to tell angular what controller we are using
+                to get and set the model data. Controllername is the name of the controller defined in your JS 
+            also note, the scope of this declaration matters... it needs to be on an element 
+            which is the parent or some ancestor of elements/code that will USE the controller + scope properties-->
+    <div>
+        <p>[Country Details]</p>
+
+        <Label>Country Name:</Label>
+        <p>{{ selectedCountryDetail.name }}</p>
+        <br>
+
+        <Label>Date Visited:</Label>
+        <p>{{ selectedCountryDetail.datevisited}}</p>
+        <br>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<html ng-app>
+
+<head>
+    <script src="../angular.min.js"></script>
+</head>
+
+<body>
+
+    <!-- OOOOH FOUND SOMETHING INTERESTING! -->
+    <!-- you cant name your ng-models 'ng-xxxxxx' - Angular seems to reserve that prefix for its own shit -->
+
+    <!-- 1) Create an initialized array variable in JS using ng init -->
+    <div ng-init="countriesVisitedArray = [ { name: 'Thailand', datevisited: '11/18' }
+                                            , { name: 'USA', datevisited: '07/18' }
+                                            , { name: 'Japan', datevisited: '10/18' }
+                                            , { name: 'Brazil', datevisited: '09/18' }
+                                            , { name: 'Colombia', datevisited: '09/18' }]">
+
+        <p>Number of countries visited: {{ countriesVisitedArray.length }}</p>
+        <label for="countrySearch">Filter Country</label>
+        <input id="countrySearch" type="text" size="20" ng-model="currentCountrySearch">
+
+        <strong>Angular binding:</strong> {{ currentCountrySearch }}
+        <ul>
+            <!-- 2) The 'orderBy: 
+                     takes an array, and returns an array.
+                     as a param, it takes the name of the FIELDNAME of the object you
+                     want to sort/order.. -->
+            <li ng-repeat="countryVisited in countriesVisitedArray | filter: currentCountrySearch | orderBy: 'datevisited' ">
+                {{ countryVisited.name }} @ ({{ countryVisited.datevisited }})
+            </li>
+        </ul>
+        <ul>
+            <!-- 2) The 'orderBy: 
+                         takes an array, and returns an array.
+                         as a param, it takes the name of the FIELD of the object you
+                         want to sort/order.. -->
+
+                         <!-- here.. becsuse orderBy take IN a filter, and returns one
+                            i have figured out you can just pass in an 'empty' filter, if all
+                        you want to do is just orderBy :) -->
+            <li ng-repeat="countryVisited in countriesVisitedArray | filter | orderBy: 'datevisited' ">
+                {{ countryVisited.name }} @ ({{ countryVisited.datevisited }})
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

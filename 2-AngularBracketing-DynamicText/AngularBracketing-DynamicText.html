@@ -1,0 +1,32 @@
+<html ng-app>
+<!-- ng-app must be inlcuded at html tag to 
+         make/render the page as an angular app/page -->
+
+<head>
+    <script type="text/javascript" src="../angular.min.js"> </script>
+</head>
+
+<body>
+    Everybody wants to say Hello "{{ messageText }}" <!-- use of the ang declared variable -->
+    <!-- the double {{ }} is angular notation, telling angula engine to eval
+              whatever is inside the {{ }} -->
+    <p>
+        <input type="text" ng-model="messageText">
+        <!-- 'ng-model=ngModelId' - takes the VALUE of the variale..that has been
+                    assigned to ng-model and assign that value to ng-model variable ngModelId
+                     (messageText in this case)-->
+
+            <!-- Angular is smrt enough to understand that 'messageText' has not been
+                 declared anyehwre else so angular will DECLARE IT FOR US
+                 so we can use it.. like we have within the {{ }} for ang to EVAL its VALUE -->
+
+              <!--          This is called DATA BINDING!
+              using ng-model you bind the value of an element, to the variable declared
+              in ng-model="modelIdentifier" and then you can use that model anywhere else inthe app.
+              whenevr the value changes, the value is auto updated.. and anything that REFERS to that
+              variable WILL ALSO SEE THE UPDATED VALUE. -->
+
+    </p>
+</body>
+
+</html>

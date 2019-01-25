@@ -1,0 +1,78 @@
+<html ng-app>
+
+<head>
+    <script src="../angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-controller="CountriesVisitedController"> 
+        <!-- 4) We use ng-controller="controllerName" to tell angular what controller we are using
+                to get and set the model data. Controllername is the name of the controller defined in your JS 
+            also note, the scope of this declaration matters... it needs to be on an element 
+            which is the parent or some ancestor of elements/code that will USE the controller + scope properties-->
+        <div>
+            <p>Number of countries visited: {{ countriesVisited.length }}</p>
+            <ul>
+                <li ng-repeat="countryVisited in countriesVisited">
+                    {{ countryVisited.name }} @ ({{ countryVisited.datevisited }})
+                </li>
+            </ul>
+        </div>
+
+        <!-- 6) Create a angular style 'form' so we have inputs for making entering a new countryVisited -->
+        <div style="width:25%">
+            <div style="background-color:darkseagreen">
+                <label for="inputCountryName">Country:</label>
+                <input type="text" placeholder="Enter Country here..." ng-model="countryToAdd.name">
+                <!-- 7) we declare our ng-model that the VALUE of the text input will be stored
+                    in the countryToAdd(object).name(property of the object) -->
+
+                <!-- remember Angular is smart enough to see that countryToAdd has not been defined
+                        elsewhere, so will new one up for us in the scope so we can use it -->
+            </div>
+            <div>
+                <div style="float:left; background-color: antiquewhite">
+                    <label for="inputDateVisited">Date:</label>
+                    <input type="text" placeholder="mm/yy" ng-model="countryToAdd.datevisited">
+                    <!-- 7) we declare our ng-model that the VALUE of the text input will be stored
+                     in the countryToAdd(object).dateVisited(property of the object) -->
+                </div>
+                <div style="float:right;">
+                    <button type="button" ng-click="addVisitedCountry(countryToAdd)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //1) create an mvc - 'controller' which will coordinate getting the 'model' and present itfor the 'view'
+        function CountriesVisitedController($scope) {   /* 2) inject $scope (angular DI object for a context, where    
+                                                             out view and controller have access to it. 
+                                                             very similar to ViewBag! in Asp.NET) */
+
+            $scope.countryToAdd = {}; //8) declare the countryToAdd in the scope viewbag.
+
+            // 3) this is the same array data, but we now place it in the controller
+            //    and as a property of our Angular $scope bag. (mimicking it retrieving the data from a web service/webapi)
+            //    anything defined in $scope willbecome available as a variable in our 'view' side of angular. 
+            $scope.countriesVisited = [
+                { name: 'Thailand', datevisited: '11/18' }
+                , { name: 'USA-ToShowItsComingFromScope!', datevisited: '07/18' }
+                , { name: 'Japan', datevisited: '10/18' }
+                , { name: 'Brazil', datevisited: '09/18' }
+                , { name: 'Colombia', datevisited: '09/18' }];
+
+            // 5) create a method in scope that allows for adding a new visited country to array
+            $scope.addVisitedCountry = function (countyVisitData) {
+                $scope.countriesVisited.push(countyVisitData);
+                // because of how data binding works in Angular..
+                // when to add to this array, the ng-repeat (in view, ln:14) 
+                // that references the array, will automatically be updated
+                // and display the new addition
+
+                $scope.countryToAdd = {}; //8) empty out the countryToAdd so nexttime we want add, we get a new instance
+            };
+        };
+    </script>
+</body>
+
+</html>

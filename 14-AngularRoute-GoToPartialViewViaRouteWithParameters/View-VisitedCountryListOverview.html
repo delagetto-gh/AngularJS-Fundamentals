@@ -1,0 +1,27 @@
+<div ng-controller="CountriesVisitedController">
+    <!-- 4) We use ng-controller="controllerName" to tell angular what controller we are using
+            to get and set the model data. Controllername is the name of the controller defined in your JS 
+        also note, the scope of this declaration matters... it needs to be on an element 
+        which is the parent or some ancestor of elements/code that will USE the controller + scope properties-->
+    <div>
+        <p>Number of countries visited: {{ countriesVisited.length }}</p>
+        <ul>
+            <li ng-repeat="countryVisited in countriesVisited">
+                <!-- create a hyperlink here  which we will use to create a dynamic link to the countryDetail View
+                    for the selected country. we want to identify the selected country by its name, so we use angular
+                {{ countryName }} to resolve the value of the countryname and append to our hyperlink.
+            
+                then routing (as defined in the routeconfig) will take care of capturing the url param
+                and re-routing to the detail view WITH that param-->
+                <a ng-href="#/detail/{{countryVisited.name}}"> {{ countryVisited.name }} @ ({{ countryVisited.datevisited }}) </a>
+<!-- 
+                note: we can use normal href over ng-ref, but read this:
+
+                ..."Using Angular markup like {{hash}} in an href attribute will make the link go to the wrong URL 
+                if the user clicks it before Angular has a chance to replace the {{hash}} markup with its value. 
+                Until Angular replaces the markup the link will be broken and will most likely return a 404 error. 
+                The ngHref directive solves this problem." -->
+            </li>
+        </ul>
+    </div>
+</div>

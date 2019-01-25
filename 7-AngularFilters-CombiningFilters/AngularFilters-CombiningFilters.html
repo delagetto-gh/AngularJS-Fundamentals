@@ -1,0 +1,56 @@
+<html ng-app>
+
+<head>
+    <script src="../angular.min.js"></script>
+</head>
+
+<body>
+
+    <!-- OOOOH FOUND SOMETHING INTERESTING! -->
+    <!-- you cant name your ng-models 'ng-xxxxxx' - Angular seems to reserve that prefix for its own shit -->
+
+    <!-- 1) Create an initialized array variable in JS using ng init -->
+    <div ng-init="countriesVisitedArray = [ { name: 'Thailand', datevisited: '11/18' }
+                                            , { name: 'USA', datevisited: '7-8/18' }
+                                            , { name: 'Japan', datevisited: '10/18' }
+                                            , { name: 'Brazil', datevisited: '9/18' }
+                                            , { name: 'Colombia', datevisited: '9/18' }]">
+
+        <p>Number of countries visited: {{ countriesVisitedArray.length }}</p>
+        <label for="countrySearch">Filter Country</label>
+        <input id="countrySearch" type="text" size="20" ng-model="currentCountrySearch">
+
+        <strong>Angular binding:</strong> {{ currentCountrySearch }}
+        <ul>
+            <!-- 2) The 'filter: ['some string' | variableName]
+                     allows us to filter a collection based on some input string, 
+                     or via the VALUE of some variable.
+                     Here were using the variable from ng-model  'currentCountrySearch'
+                     which gets its value from the databound input element
+                     tofilter the list.
+                     
+                     so as we type, the variable is being data bound
+                     and this our list is being filteed by that value! -->
+
+
+                     <!-- *NOTE* - by DEFAULT,
+                             the filter will filter on every object's property (and nested properties)
+                             so will filer on name, and datevisited fields.
+
+                             if we want to filter on a SPECIFIC field, we have to do more work
+                             like this...
+
+                             filter:{fieldName: 'filterValue'} 
+                             
+                             that is we now give filter an OBJECT that says
+                             the name of the field we want to filter ON
+                             and we supply it with the value towant to filter WITH
+                      -->
+            <li ng-repeat="countryVisited in countriesVisitedArray | filter: currentCountrySearch ">
+                {{ countryVisited.name }} @ ({{ countryVisited.datevisited }})
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<html ng-app>
+
+<head>
+    <script src="../angular.min.js"></script>
+</head>
+
+<body>
+    <!-- 1) Create an initialized array variable in JS using ng init -->
+    <div ng-init="countriesVisitedArray = [ { name: 'Thailand', datevisited: '11/18' }
+                                            , { name: 'USA', datevisited: '7-8/18' }
+                                            , { name: 'Japan', datevisited: '10/18' }
+                                            , { name: 'Brazil', datevisited: '9/18' }
+                                            , { name: 'Colombia', datevisited: '9/18' }]">
+
+        <p>Number of countries visited: {{ countriesVisitedArray.length }}</p>
+        <ul>
+            <li ng-repeat="countryVisited in countriesVisitedArray">
+                {{ countryVisited.name | uppercase}} ({{ countryVisited.datevisited }})
+            </li>
+            <!-- syntax is pipe '|' then filtername
+                'uppercase' isjust one of many angular filters ;)
+
+                        Theres also...
+                        currency = Format a number to a currency format.
+                        date  = Format a date to a specified format.
+                        limitTo  = Limits an array/string, into a specified number of elements/characters.
+                        lowercase = Format a string to lower case.
+                        number  = Format a number to a string.
+                        orderBy  = Orders an array by an expression. 
+                -->
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<html ng-app>
+
+<head>
+    <script src="../angular.min.js"></script>
+</head>
+
+<body>
+    <!-- 1) Create an initialized array variable in JS using ng init -->
+    <div ng-init="countriesVisitedArray = [ { name: 'Thailand', datevisited: '11/18' }
+                                            , { name: 'USA', datevisited: '7-8/18' }
+                                            , { name: 'Japan', datevisited: '10/18' }
+                                            , { name: 'Brazil', datevisited: '9/18' }
+                                            , { name: 'Colombia', datevisited: '9/18' }]">
+
+        <p>Number of countries visited: {{ countriesVisitedArray.length }}</p>
+        <ul>
+            <!-- 2) The ng-repeat="currentIterName in arrayVariable" says...
+                    foreach item in array, i will repeat the element i (ng-repeat) 
+                    is declared on  -->
+            <li ng-repeat="countryVisited in countriesVisitedArray">
+                {{ countryVisited.name }} ({{ countryVisited.datevisited }})
+            </li>
+            <!-- so in the above, ng-repeat is declared on an li element
+            ..so we will repeat li n-times, where n is the number of 
+            items in the array.  -->
+
+            <!-- and of course we are able to access the items
+            using the {{ }} becase they will be in scope.  -->
+        </ul>
+    </div>
+</body>
+
+</html>
